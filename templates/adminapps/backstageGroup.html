@@ -1,0 +1,340 @@
+{%extends 'adminapps/inherit.html'%} <!-- 繼承template下的inherit -->
+{%block inherit1%} <!-- 繼承開始 -->
+{% load static %} <!-- 載入static以使用靜態文件 -->
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">kai</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                選擇管理項目
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/backstage" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>公告管理</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/backstageC" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>課表管理</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/backstageClock" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>打卡管理</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/backstaged" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>儀表板管理</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+
+
+
+  <!-- Content Wrapper. Contains page content kaikai-->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">群組管理系統</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Info boxes -->
+        <!-- main row -->
+        <div class="row">
+          <!-- Left col -->
+          <div class="col-md-12">
+            <!-- TABLE: LATEST ORDERS -->
+            <div class="card">
+              <div class="card-header border-transparent">
+                <h3 class="card-title">新增班級（班級名稱不能重複）</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table m-0">
+                    <thead>
+                    <tr>
+                      <th>班級代號</th>
+                      <th>班級名稱</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>
+                        <input id = "groupCode" type="text" class="form-control" placeholder="請輸入班級代號">
+                      </td>
+                      <td>
+                        <input id = "groupName" type="text" class="form-control" placeholder="請輸入班級名稱">
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-block btn-outline-primary btn-sm groupAdd">新增</button>
+                      </td>                      
+                    </tr>                
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.table-responsive -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+        <div class="row">
+          <!-- Left col -->
+          <div class="col-md-12">
+            <!-- TABLE: LATEST ORDERS -->
+            <div class="card">
+              <div class="card-header border-transparent">
+                <div class = "row">
+                  <div class="col-md-2">
+                    <h3 class="card-title">班級管理</h3>
+                  </div>
+                  
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table m-0">
+                    <thead>
+                    <tr>
+                      <th>班級代號</th>
+                      <th>班級名稱</th>
+                      <th>修改</th>
+                    </tr>
+                    </thead>
+                    <tbody class = "groupmain">
+                      <!-- announce_main對應位置 -->
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.table-responsive -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+                <a class="btn btn-sm btn-info float-right nextpage">下一頁</a>
+                <a class="btn btn-sm  float-right pagenumber">1</a>
+                <a class="btn btn-sm btn-info float-right previouspage">上一頁</a>
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+  {%endblock inherit1%}
+  
+  {%block script%}
+  <!-- 新增用戶 -->
+  <script>
+    $.ajaxSetup({
+      data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+    });
+
+    $(".groupAdd").click(function(){
+      groupName = document.getElementById("groupName").value;
+      groupCode = document.getElementById("groupCode").value;
+      $.ajax({
+        url:"/Mgroup_Add",
+        type:"post",
+        data:{
+          groupName:groupName,
+          groupCode:groupCode,
+        },
+        success : function(response){
+          window.location.href = "/backstageGroup";
+        }
+      })
+    });
+  </script>
+  <!-- 用戶資料 -->
+  <script>
+    $.getJSON("/Mgroup_main", function(rawdata){
+      // 取出所有資料
+      data = rawdata.data;
+      console.log(data);
+      // 將資料一行一行寫到網頁
+      for (let i = 0; i < 6; i++) {
+          row = data[i];
+          if (row) {
+          // 呼應到網頁的 class = announcemain
+          $('.groupmain').append(
+          '<tr>'
+              +'<td>'+row[0]+'</td>'
+              +'<td>'+row[1]+'</td>'
+              +'<td>'
+                  //根據id給定超連結
+                  +'<button type="button" class="btn btn-block btn-outline-success btn-sm"'
+                          +' onclick="location.href=\'/MgroupDelete/'+row[2]+'\';">'
+                      +'修改'
+                  +'</button>'
+              +'</td>'
+          +'</tr>');
+          }
+      }
+  });
+  </script>
+  <!-- 下一頁 -->
+  <script>
+    $(".nextpage").click(function(){
+      //Post
+      $.ajax({
+        url: "/Mgroup_main",
+        //成功後的回應
+        success: function(rawdata){
+          // 取得頁碼轉int
+          page = $('.pagenumber').text();
+          page = parseInt(page, 10);
+          //翻頁
+          nextpage = page+1;
+          //下頁對應在list的位置
+          tail = nextpage * 6;
+          head = tail - 6;
+          // 取出所有資料
+          data = rawdata.data;
+          //如果下一頁有資料才會觸發更新
+          if (head <= data.length) {
+            //清空內容與頁碼
+            $('.groupmain').empty();
+            $('.pagenumber').empty();
+            //更新頁碼
+            $('.pagenumber').append(nextpage);
+            // 將資料一行一行寫到網頁
+            for (let i = head; i < tail; i++) {
+              row = data[i];
+              if (row) {
+              // 呼應到網頁的 class = groupmain
+              $('.groupmain').append(
+              '<tr>'
+                  +'<td>'+row[0]+'</td>'
+                  +'<td>'+row[1]+'</td>'
+                  +'<td>'
+                      //根據id給定超連結
+                      +'<button type="button" class="btn btn-block btn-outline-success btn-sm"'
+                              +' onclick="location.href=\'/MgroupDelete/'+row[2]+'\';">'
+                          +'修改'
+                      +'</button>'
+                  +'</td>'
+              +'</tr>');
+              }
+            }
+          }
+        }
+      });
+  });
+  </script>
+  <!-- 上一頁 -->
+  <script>
+    $(".previouspage").click(function(){
+      //使用php Post
+      $.ajax({
+        url: "/Mgroup_main",
+        //成功後的回應
+        success: function(rawdata){
+          // 取得頁碼轉int
+          page = $('.pagenumber').text();
+          page = parseInt(page, 10);
+          //頁碼大於一才會更新
+          if (page>1) {
+            //翻頁
+            previouspage = page-1;
+            //下頁對應在list的位置
+            tail = previouspage * 6;
+            head = tail - 6;
+            // 取出所有資料
+            data = rawdata.data;
+            //清空內容與頁碼
+            $('.groupmain').empty();
+            $('.pagenumber').empty();
+            //更新頁碼
+            $('.pagenumber').append(previouspage);
+            // 將資料一行一行寫到網頁
+            for (let i = head; i < tail; i++) {
+            row = data[i];
+              if (row) {
+                // 呼應到網頁的 class = groupmain
+                $('.groupmain').append(
+                '<tr>'
+                    +'<td>'+row[0]+'</td>'
+                    +'<td>'+row[1]+'</td>'
+                    +'<td>'
+                        //根據id給定超連結
+                        +'<button type="button" class="btn btn-block btn-outline-success btn-sm"'
+                                +' onclick="location.href=\'/MgroupDelete/'+row[2]+'\';">'
+                            +'修改'
+                        +'</button>'
+                    +'</td>'
+                +'</tr>');
+              }
+          }
+          }
+        }
+      });
+
+  });
+  </script>
+  {%endblock script%}

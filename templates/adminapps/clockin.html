@@ -1,0 +1,215 @@
+{%extends 'adminapps/inherit.html'%} <!-- 繼承template下的inherit -->
+{%block inherit1%} <!-- 繼承開始 -->
+{% load static %} <!-- 載入static以使用靜態文件 -->
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">kai</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                選擇管理項目
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/backstage" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>公告管理</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/backstageC" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>課表管理</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/backstaged" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>儀表板管理</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+
+
+
+  <!-- Content Wrapper. Contains page content kaikai-->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">簽到暨請假系統</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Info boxes -->
+        <!-- Main row -->
+
+        <div class="row">
+          <!-- Left col -->
+          <div class="col-md-6">
+            <!-- TABLE: LATEST ORDERS -->
+            <div class="card">
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table m-0">
+                    <tbody>
+                    <tr>
+                      <td>
+                        <h4>到班打卡</h4>
+                        <div class="bg-danger color-palette"><span>#今日已簽到</span></div>      
+                      </td>
+                      <td>
+                        <br>
+                        <button type="button" class="btn btn-block btn-outline-success btn-lg checkin">in</button>
+                        <br>
+                      </td>                      
+                    </tr>
+                    <tr>
+                      <td>
+                        <h4>離班打卡</h4>
+                        <div class="bg-danger color-palette"><span>#今日已簽退</span></div>      
+                      </td>
+                      <td>
+                        <br>
+                        <button type="button" class="btn btn-block btn-outline-danger btn-lg">out</button>
+                        <br>
+                      </td>                      
+                    </tr>
+                    <tr>
+                      <td>
+                        <h4>查看個人出勤紀錄</h4>
+                      </td>
+                      <td>
+                        <br>
+                        <button type="button" class="btn btn-block btn-outline-info btn-lg" onclick="location.href='/clockinAttendance'">check</button>
+                        <br>
+                      </td>                      
+                    </tr>        
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.table-responsive -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <!-- Right col -->
+          <div class="col-md-6">
+            <!-- TABLE: LATEST ORDERS -->
+            <div class="card">
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table m-0">
+                    <tbody>
+                    <tr>
+                      <td>
+                        <h4>進入請假系統</h4>
+                      </td>
+                      <td>
+                        <br>
+                        <button type="button" class="btn btn-block btn-outline-success btn-lg" onclick="location.href='/clockinLeaveAdd'">請假</button>
+                        <br>
+                      </td>                      
+                    </tr>
+                    <tr>
+                      <td>
+                        <h4>請假說明</h4>
+                      </td>
+                      <td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>1.請假時請用line告知班導師</p> 
+                        <p>2.請假時請用line告知班導師</p> 
+                        <p>3.請假時請用line告知班導師</p> 
+                      </td>                      
+                    </tr>        
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.table-responsive -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+  {%endblock inherit1%}
+  
+  {%block script%}
+  <!-- 打卡 -->
+  <script>
+    $.ajaxSetup({
+      data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+    });
+
+    $(".checkin").click(function(){
+      $.ajax({
+        url:"/clockin_chickin",
+        type:"post",
+        data:{
+          in:'in',
+        },
+      })
+    });
+
+  </script>
+  {%endblock script%}

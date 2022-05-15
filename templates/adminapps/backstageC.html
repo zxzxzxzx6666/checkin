@@ -1,0 +1,410 @@
+{%extends 'adminapps/inherit.html'%} <!-- 繼承template下的inherit -->
+{% load static %} <!-- 載入static以使用靜態文件 -->
+{%block link%}
+<!-- Tell the browser to be responsive to screen width -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="{% static '/plugins/fontawesome-free/css/all.min.css' %}">
+<!-- Ionicons -->
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- fullCalendar -->
+<link rel="stylesheet" href="{% static '/plugins/fullcalendar/main.min.css' %}">
+<link rel="stylesheet" href="{% static '/plugins/fullcalendar-daygrid/main.min.css' %}">
+<link rel="stylesheet" href="{% static '/plugins/fullcalendar-timegrid/main.min.css' %}">
+<link rel="stylesheet" href="{% static '/plugins/fullcalendar-bootstrap/main.min.css' %}">
+<!-- Theme style -->
+<link rel="stylesheet" href="{% static '/dist/css/adminlte.min.css' %}">
+<!-- Google Font: Source Sans Pro -->
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+{%endblock link%}
+{%block inherit1%} <!-- 繼承開始 -->
+    <!-- 使用者姓名 -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">kai</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                選擇管理項目
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/backstage" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>公告管理</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/backstageC" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>課表管理</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/backstaged" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>儀表板管理</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.使用者姓名 -->
+
+  <!-- 側邊欄的最後（勿刪） -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content kaikai-->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>課表管理系統</h1>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Main row -->
+        <div class="row">
+          <!-- Left col -->
+          <div class="col-md-12">
+            <!-- TABLE: LATEST ORDERS -->
+            <div class="card">
+              <div class="card-header border-transparent">
+                <div class = "row">
+                  <div class="col-md-4">
+                    <h3 class="card-title">ntc課表（請先選擇群組）</h3>
+                  </div>
+                  <!-- 群組選單 -->
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <select class="form-control select2bs4 select2-hidden-accessible groupOption" style="width: 100%;" data-select2-id="17" tabindex="-1" aria-hidden="true">
+                          <!-- groupOption -->
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <button type="button" class="btn btn-block btn-outline-info btn-sm clickgroup" >
+                      選擇群組
+                    </button>
+                  </div>
+                  <!-- 空格 -->
+                  <div class="col-md-1"></div>
+                  <div class="col-md-2">
+                    <button type="button" class="btn btn-block btn-outline-success btn-sm" onclick="location.href='/McalendarAdd'">
+                      新增課程
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table m-0">
+                    <thead>
+                    <tr>
+                      <th>標題</th>
+                      <th>開始</th>
+                      <th>結束</th>
+                      <th>群組</th>
+                      <th>修改</th>
+                    </tr>
+                    </thead>
+                    <tbody class = "calendarmain">
+                      <!-- calendarmain對應位置 -->
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.table-responsive -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+                <a class="btn btn-sm btn-info float-right nextpage">下一頁</a>
+                <a class="btn btn-sm  float-right pagenumber">1</a>
+                <a class="btn btn-sm btn-info float-right previouspage">上一頁</a>
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <!-- /.col -->
+        </div>
+        <br>
+        <div class="row">
+          <h4>前台課表呈現</h4>
+        </div>
+        <div class="row">
+          <!-- /.col -->
+          <div class="col-md-12">
+            <div class="card card-primary">
+              <div class="card-body p-0">
+                <!-- THE CALENDAR -->
+                <div id="calendar"></div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+{%endblock inherit1%}
+
+{%block script%}
+<!-- jQuery UI -->
+<script src="{% static '/plugins/jquery-ui/jquery-ui.min.js' %}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{% static '/dist/js/demo.js' %}"></script>
+<script src="{% static 'plugins/moment/moment.min.js' %}"></script>
+<script src="{% static 'plugins/fullcalendar/main.min.js' %}"></script>
+<script src="{% static 'plugins/fullcalendar-daygrid/main.min.js' %}"></script>
+<script src="{% static 'plugins/fullcalendar-timegrid/main.min.js' %}"></script>
+<script src="{% static 'plugins/fullcalendar-interaction/main.min.js' %}"></script>
+<script src="{% static 'plugins/fullcalendar-bootstrap/main.min.js' %}"></script>
+<!-- Page specific script -->
+
+<!-- 日曆：課表從資料庫取得資料 -->
+<script>
+  $.getJSON("/Mcalendar_main",function(result){
+    data = result['data']
+    console.log(data)
+    /* initialize the calendar
+      -----------------------------------------------------------------*/
+    //Date for the calendar events (dummy data)
+    var date = new Date()
+    var d    = date.getDate(),
+        m    = date.getMonth(),
+        y    = date.getFullYear()
+  
+    var Calendar = FullCalendar.Calendar;
+    var Draggable = FullCalendarInteraction.Draggable;
+    var calendarEl = document.getElementById('calendar');
+  
+    // initialize the external events
+    // -----------------------------------------------------------------
+  
+  
+    var calendar = new Calendar(calendarEl, {
+      plugins: [ 'bootstrap', 'interaction', 'dayGrid', 'timeGrid' ],
+      header    : {
+        left  : 'prev,next today',
+        center: 'title',
+        right : 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      'themeSystem': 'bootstrap',
+      //Random default events
+      events    : data,
+      editable  : true,
+      droppable : true, // this allows things to be dropped onto the calendar !!!
+ 
+    });
+
+    calendar.render();
+    // $('#calendar').fullCalendar()
+  
+    // 查看event
+    // console.log(calendar.getEventSources()[0]['internalEventSource']['_raw'])
+    });
+</script>
+<!-- 修改表格：從資料庫取得資料 -->
+<script>
+  $.getJSON("/Mcalendar_main", function(rawdata){
+      // 取出所有資料
+      data = rawdata['data'];
+      for (let i = 0; i < 6; i++) {
+        $('.calendarmain').append(
+        '<tr>'
+            +'<td>'+data[i]['title']+'</td>'
+            +'<td>'+data[i]['start']+'</td>'
+            +'<td>'+data[i]['end']+'</td>'
+            +'<td>'+data[i]['group']+'</td>'
+            +'<td>'
+                //根據id給定超連結
+                +'<button type="button" class="btn btn-block btn-outline-primary btn-sm"'
+                        +' onclick="location.href=\'/McalendarDelete/'+data[i]['id']+'\';">'
+                    +'修改'
+                +'</button>'
+            +'</td>'
+            
+        +'</tr>');
+      }
+  });
+  
+</script>
+<!-- 下一頁 -->
+<script>
+$(".nextpage").click(function(){
+    //使用php Post
+    $.ajax({
+      url: "/Mcalendar_main",
+      //成功後的回應
+      success: function(rawdata){
+        // 取得頁碼轉int
+        page = $('.pagenumber').text();
+        page = parseInt(page, 10);
+        //翻頁
+        nextpage = page+1;
+        //下頁對應在list的位置
+        tail = nextpage * 6;
+        head = tail - 6;
+        // 取出所有資料
+        data = rawdata.data;
+        //如果下一頁有資料才會觸發更新
+        if (head <= data.length) {
+          //清空內容與頁碼
+          $('.calendarmain').empty();
+          $('.pagenumber').empty();
+          //更新頁碼
+          $('.pagenumber').append(nextpage);
+          // 將資料一行一行寫到網頁
+          for (let i = head; i < tail; i++) {
+            row = data[i];
+            if (row) {
+              // 呼應到網頁的 class = announcemain
+              $('.calendarmain').append(
+                '<tr>'
+                    +'<td>'+data[i]['title']+'</td>'
+                    +'<td>'+data[i]['start']+'</td>'
+                    +'<td>'+data[i]['end']+'</td>'
+                    +'<td>'
+                        //根據id給定超連結
+                        +'<button type="button" class="btn btn-block btn-outline-primary btn-sm"'
+                                +' onclick="location.href=\'/McalendarDelete/'+data[i]['id']+'\';">'
+                            +'修改'
+                        +'</button>'
+                    +'</td>'
+                    
+                +'</tr>');
+            }
+          }
+        }
+      }
+    });
+});
+</script>
+<!-- 上一頁 -->
+<script>
+  $(".previouspage").click(function(){
+    //使用 Post
+    $.ajax({
+      url: "/calendar_main",
+      //成功後的回應
+      success: function(rawdata){
+        // 取得頁碼轉int
+        page = $('.pagenumber').text();
+        page = parseInt(page, 10);
+        //頁碼大於一才會更新
+        if (page>1) {
+          //翻頁
+          previouspage = page-1;
+          //下頁對應在list的位置
+          tail = previouspage * 6;
+          head = tail - 6;
+          // 取出所有資料
+          data = rawdata.data;
+          //清空內容與頁碼
+          $('.calendarmain').empty();
+          $('.pagenumber').empty();
+          //更新頁碼
+          $('.pagenumber').append(previouspage);
+          
+          // 將資料一行一行寫到網頁
+          for (let i = head; i < tail; i++) {
+          row = data[i];
+          if (row) {
+            // 呼應到網頁的 class = announcemain
+            $('.calendarmain').append(
+                '<tr>'
+                    +'<td>'+data[i]['title']+'</td>'
+                    +'<td>'+data[i]['start']+'</td>'
+                    +'<td>'+data[i]['end ']+'</td>'
+                    +'<td>'
+                        //根據id給定超連結
+                        +'<button type="button" class="btn btn-block btn-outline-primary btn-sm"'
+                                +' onclick="location.href=\'/McalendarDelete/'+data[i]['id']+'\';">'
+                            +'修改'
+                        +'</button>'
+                    +'</td>'
+                    
+                +'</tr>');
+          }
+        }
+        }
+      }
+    });
+
+});
+</script>
+<!-- group選單 -->
+<script>
+  $.getJSON("/Mgroup_main", function(rawdata){
+    data = rawdata['data']
+    console.log(data[1][0])
+    for (let i = 0; i < data.length; i++) {
+      num = i+1
+      strNum = num.toString();
+      if (i==0) {
+        $('.groupOption').append('<option selected="selected" value = '+strNum+'>'+data[i][0]+'</option>'); 
+      }else{
+        $('.groupOption').append('<option value = '+strNum+'>'+data[i][0]+'</option>'); 
+      }
+    }
+  });
+</script>
+<!-- group更新按鈕 -->
+<script>
+  $.ajaxSetup({
+  data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+  });
+  $(".clickgroup").click(function(){
+    group = $(".groupOption option:selected").text();
+    $.ajax({
+      url:"/McalendarGroupSession",
+      type:"post",
+      data:{
+        group:group,
+      },
+      success:function(data) {
+        window.location.replace("/backstageC"); 
+      },
+    })
+  });
+</script>
+{%endblock script%}

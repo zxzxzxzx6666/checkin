@@ -1,0 +1,160 @@
+{%extends 'adminapps/inherit.html'%} <!-- 繼承template下的inherit -->
+{%block inherit1%} <!-- 繼承開始 -->
+{% load static %} <!-- 載入static以使用靜態文件 -->
+    <!-- 使用者姓名 -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">kai</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                出勤紀錄
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/clockinAttendance" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>打卡記錄</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/clockinLeave" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>請假紀錄</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.使用者姓名 -->
+
+  <!-- 側邊欄的最後（勿刪） -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content kaikai-->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">出勤紀錄</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Main row -->
+        <div class="row">
+          <div class="col-md-12">
+            <!-- TABLE: LATEST ORDERS -->
+            <div class="card">
+              <div class="card-header border-transparent">
+                <h3 class="card-title">請假紀錄</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table m-0">
+                    <thead>
+                    <tr>
+                      <th>開始</th>
+                      <th>結束</th>
+                      <th>狀態</th>
+                      <th>檢查</th>
+                    </tr>
+                    </thead>
+                    <tbody class = 'announcemain'>
+                    <!-- <tr>
+                      <td><a href="pages/examples/invoice.html">最新消息</a></td>
+                      <td>請大家遵守以下規則</td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">2020-07-18 09:00</div>
+                      </td>
+                      <td><span class="badge badge-success">200</span></td>
+                    </tr>                      
+                    <tr>
+                      <td><a href="pages/examples/invoice.html">最新消息</a></td>
+                      <td>本日正式啟用</td>
+                      <td>
+                        <div class="sparkbar" data-color="#00a65a" data-height="20">2020-07-18 08:00</div>
+                      </td>
+                      <td><span class="badge badge-success">20</span></td>
+                      
+                    </tr> -->
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.table-responsive -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+                <a class="btn btn-sm btn-info float-right nextpage">下一頁</a>
+                <a class="btn btn-sm float-right pagenumber">
+                    1
+                </a>
+                <a class="btn btn-sm btn-info float-right previouspage">上一頁</a>
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+        <!-- /.row -->
+      </div><!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+{%endblock inherit1%}
+
+{%block script%}
+<!-- 卡片內容 -->
+<script type="text/javascript" src="{% static 'js/announce/getAllData.js' %}"></script>
+<!-- 公告欄內容 -->
+<script type="text/javascript" src="{% static 'js/announce/announce_main.js' %}"></script>
+<!-- 下一頁 -->
+<script type="text/javascript" src="{% static 'js/announce/announce_nextpage.js' %}"></script>
+<!-- 上一頁 -->
+<script type="text/javascript" src="{% static 'js/announce/announce_previouspage.js' %}"></script>
+{%endblock script%}

@@ -1,0 +1,185 @@
+{%extends 'adminapps/inherit.html'%} <!-- 繼承template下的inherit -->
+{%block inherit1%} <!-- 繼承開始 -->
+{% load static %} <!-- 載入static以使用靜態文件 -->
+    <!-- 使用者姓名 -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">kai</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                選擇公告
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>最新消息</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>系統公告</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.使用者姓名 -->
+
+  <!-- 側邊欄的最後（勿刪） -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content kaikai-->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">請假系統</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Main row -->
+        <div class="row">
+          <!-- Left col -->
+          <div class="card card-primary col-md-8">
+            <div class="card-header">
+              <h3 class="card-title">請假紀錄</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <form role="form">
+                <div class="row">
+                  <div class="col-sm-2">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>時間</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-8">
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="far fa-clock"></i></span>
+                        </div>
+                        <input type="text" class="form-control float-right" id="reservationtime">
+                      </div>
+                      <!-- /.input group -->
+                    </div>
+                 </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-2">
+                    <!-- text input -->
+                    <div class="form-group">
+                      <label>事由</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-8">
+                    <div class="form-group">
+                      <input id = "titleText" type="text" class="form-control" placeholder="Enter ...">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-2">
+                    <!-- textarea -->
+                    <div class="form-group">
+                      <label>原因</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-8">
+                    <div class="form-group">
+                      <textarea id = "contentText" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.col -->
+
+          <div class="col-md-4">
+            <button type="button" class="btn btn-block btn-outline-success btn-lg addbutton">確定新增</button>
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+{%endblock inherit1%}
+
+{%block script%}
+<!-- 新增器 -->
+<script>
+  // ajax需要先使用csrf
+  $.ajaxSetup({
+    data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+  });
+  //點擊語法
+  $(".addbutton").click(function(){
+    sortText = document.getElementById("sortText").value;
+    titleText = document.getElementById("titleText").value;
+    timeText = document.getElementById("timeText").value;
+    contentText = document.getElementById("contentText").value;
+    pageviewText = document.getElementById("pageviewText").value;
+    $.ajax({
+      //python位置
+      url: "/Mannounce_Add",
+      // 將資料 post 到 python
+      type: "post",
+      //放入資料，以及post變數
+      data: {
+        sortText:sortText,
+        titleText:titleText,
+        timeText:timeText,
+        contentText:contentText,
+        pageviewText:pageviewText,
+      },
+    });
+    // 跳轉頁面
+    window.location.replace("/backstage");
+  });
+</script>
+
+{%endblock script%}

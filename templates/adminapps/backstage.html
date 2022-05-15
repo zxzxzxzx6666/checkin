@@ -1,0 +1,512 @@
+{%extends 'adminapps/inherit.html'%} <!-- 繼承template下的inherit -->
+{%block inherit1%} <!-- 繼承開始 -->
+{% load static %} <!-- 載入static以使用靜態文件 -->
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static 'dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">kai</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                選擇管理項目
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/backstage" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>公告管理</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/backstageC" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>課表管理</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/backstageClock" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>打卡管理</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/backstageAccount" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>帳號管理</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/backstageGroup" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>群組管理</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/backstaged" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>儀表板管理</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+
+
+
+  <!-- Content Wrapper. Contains page content kaikai-->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-3">
+            <h1 class="m-0 text-dark">公告管理系統</h1>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Info boxes -->
+        <!-- Main row -->
+        <div class="row">
+          <!-- Left col -->
+          <div class="col-md-12">
+            <!-- TABLE: LATEST ORDERS -->
+            <div class="card">
+              <div class="card-header border-transparent">
+                <div class = "row">
+                  <div class="col-md-3">
+                    <h3 class="card-title">公告欄&nbsp&nbsp(請先選擇群組)</h3>
+                  </div>
+                  <!-- 空格 -->
+                  <div class="col-md-1"></div>
+                  <!-- 群組選單 -->
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <select class="form-control select2bs4 select2-hidden-accessible groupOption" style="width: 100%;" data-select2-id="17" tabindex="-1" aria-hidden="true">
+                          <!-- groupOption -->
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <button type="button" class="btn btn-block btn-outline-info btn-sm clickgroup" >
+                      選擇群組
+                    </button>
+                  </div>
+                  <div class="col-md-1"></div>
+                  <div class="col-md-2">
+                    <button type="button" class="btn btn-block btn-outline-success btn-sm" onclick="location.href='/MannounceAdd'">
+                      新增公告
+                    </button>
+                  </div>
+                  <!-- /.col -->
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table m-0">
+                    <thead>
+                    <tr>
+                      <th>分類</th>
+                      <th>標題</th>
+                      <th>時間</th>
+                      <th>群組</th>
+                      <th>修改</th>
+                    </tr>
+                    </thead>
+                    <tbody class = "announcemain">
+                      <!-- announce_main對應位置 -->
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.table-responsive -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+                <a class="btn btn-sm btn-info float-right nextpage">下一頁</a>
+                <a class="btn btn-sm  float-right pagenumber">1</a>
+                <a class="btn btn-sm btn-info float-right previouspage">上一頁</a>
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <!-- /.col -->
+        </div>
+        <div class="row">
+          <!-- Left col -->
+          <div class="col-md-6">
+            <!-- TABLE: LATEST ORDERS -->
+            <div class="card">
+              <div class="card-header border-transparent">
+                <h3 class="card-title">上方紀錄事項（直接修改）</h3>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table m-0">
+                    <thead>
+                    <tr>
+                      <th>文字</th>
+                      <th>數字</th>
+                      <th>修改</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>
+                        <input id = "cardname01" type="text" class="form-control" placeholder="Enter ...">
+                      </td>
+                      <td>
+                        <input id = "cardvalue01" type="text" class="form-control" placeholder="Enter ...">
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-block btn-outline-primary btn-sm card1">修改</button>
+                      </td>                      
+                    </tr>
+                    <tr>
+                      <td>
+                        <input id = "cardname02" type="text" class="form-control" placeholder="Enter ...">
+                      </td>
+                      <td>
+                        <input id = "cardvalue02" type="text" class="form-control" placeholder="Enter ...">
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-block btn-outline-primary btn-sm card2">修改</button>
+                      </td>                      
+                    </tr>
+                    <tr>
+                      <td>
+                        <input id = "cardname03" type="text" class="form-control" placeholder="Enter ...">
+                      </td>
+                      <td>
+                        <input id = "cardvalue03" type="text" class="form-control" placeholder="Enter ...">
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-block btn-outline-primary btn-sm card3">修改</button>
+                      </td>                      
+                    </tr>
+                    <tr>
+                      <td>
+                        <input id = "cardname04"  type="text" class="form-control" placeholder="Enter ...">
+                      </td>
+                      <td>
+                        <input id = "cardvalue04" type="text" class="form-control" placeholder="Enter ...">
+                      </td>
+                      <td>
+                        <button type="button" class="btn btn-block btn-outline-primary btn-sm card4">修改</button>
+                      </td>                      
+                    </tr>                  
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.table-responsive -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <!-- Right col -->
+          <div class="col-md-6">
+            <!-- TABLE: LATEST ORDERS -->
+            <div class="card">
+              <div class="card-header border-transparent">
+                <h3 class="card-title">右方紀錄事項（直接修改）</h3>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table m-0">
+                    <thead>
+                    <tr>
+                      <th>文字</th>
+                      <th>數字</th>
+                      <th>修改</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <input id = "cardname05" type="text" class="form-control" placeholder="Enter ...">
+                        </td>
+                        <td>
+                          <input id = "cardvalue05" type="text" class="form-control" placeholder="Enter ...">
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-block btn-outline-primary btn-sm card5">修改</button>
+                        </td>                      
+                      </tr>
+                      <tr>
+                        <td>
+                          <input id = "cardname06" type="text" class="form-control" placeholder="Enter ...">
+                        </td>
+                        <td>
+                          <input id = "cardvalue06" type="text" class="form-control" placeholder="Enter ...">
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-block btn-outline-primary btn-sm card6">修改</button>
+                        </td>                      
+                      </tr>
+                      <tr>
+                        <td>
+                          <input id = "cardname07" type="text" class="form-control" placeholder="Enter ...">
+                        </td>
+                        <td>
+                          <input id = "cardvalue07" type="text" class="form-control" placeholder="Enter ...">
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-block btn-outline-primary btn-sm  card7">修改</button>
+                        </td>                      
+                      </tr>
+                      <tr>
+                        <td>
+                          <input id = "cardname08" type="text" class="form-control" placeholder="Enter ...">
+                        </td>
+                        <td>
+                          <input id = "cardvalue08" type="text" class="form-control" placeholder="Enter ...">
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-block btn-outline-primary btn-sm  card8">修改</button>
+                        </td>                      
+                      </tr>                      
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.table-responsive -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+  {%endblock inherit1%}
+  
+  {%block script%}
+  <!-- 公告欄內容 -->
+  <script type="text/javascript" src="{% static 'js/backstage/announce_main.js' %}"></script>
+  <!-- 下一頁 -->
+  <script type="text/javascript" src="{% static 'js/backstage/announce_nextpage.js' %}"></script>
+  <!-- 上一頁 -->
+  <script type="text/javascript" src="{% static 'js/backstage/announce_previouspage.js' %}"></script>
+  <!-- 卡片內容 -->
+  <script type="text/javascript" src="{% static 'js/backstage/getAllData.js' %}"></script>
+  <!-- 卡片更新 -->
+  <script>
+    $.ajaxSetup({
+      data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+    });
+
+    $(".card1").click(function(){
+      card = "card1"
+      name = document.getElementById("cardname01").value;
+      value = document.getElementById("cardvalue01").value;
+      $.ajax({
+        url:"/MannounceCard_Update",
+        type:"post",
+        data:{
+          card:card,
+          name:name,
+          value:value,
+        },
+      })
+    });
+    $(".card2").click(function(){
+      card = "card2"
+      name = document.getElementById("cardname02").value;
+      value = document.getElementById("cardvalue02").value;
+      $.ajax({
+        url:"/MannounceCard_Update",
+        type:"post",
+        data:{
+          card:card,
+          name:name,
+          value:value,
+        },
+      })
+    });
+    $(".card3").click(function(){
+      card = "card3"
+      name = document.getElementById("cardname03").value;
+      value = document.getElementById("cardvalue03").value;
+      $.ajax({
+        url:"/MannounceCard_Update",
+        type:"post",
+        data:{
+          card:card,
+          name:name,
+          value:value,
+        },
+      })
+    });
+    $(".card4").click(function(){
+      card = "card4"
+      name = document.getElementById("cardname04").value;
+      value = document.getElementById("cardvalue04").value;
+      $.ajax({
+        url:"/MannounceCard_Update",
+        type:"post",
+        data:{
+          card:card,
+          name:name,
+          value:value,
+        },
+      })
+    });
+    $(".card5").click(function(){
+      card = "card5"
+      name = document.getElementById("cardname05").value;
+      value = document.getElementById("cardvalue05").value;
+      $.ajax({
+        url:"/MannounceCard_Update",
+        type:"post",
+        data:{
+          card:card,
+          name:name,
+          value:value,
+        },
+      })
+    });
+    $(".card6").click(function(){
+      card = "card6"
+      name = document.getElementById("cardname06").value;
+      value = document.getElementById("cardvalue06").value;
+      $.ajax({
+        url:"/MannounceCard_Update",
+        type:"post",
+        data:{
+          card:card,
+          name:name,
+          value:value,
+        },
+      })
+    });
+    $(".card7").click(function(){
+      card = "card7"
+      name = document.getElementById("cardname07").value;
+      value = document.getElementById("cardvalue07").value;
+      $.ajax({
+        url:"/MannounceCard_Update",
+        type:"post",
+        data:{
+          card:card,
+          name:name,
+          value:value,
+        },
+      })
+    });
+    $(".card8").click(function(){
+      card = "card8"
+      name = document.getElementById("cardname08").value;
+      value = document.getElementById("cardvalue08").value;
+      $.ajax({
+        url:"/MannounceCard_Update",
+        type:"post",
+        data:{
+          card:card,
+          name:name,
+          value:value,
+        },
+      })
+    });
+
+  </script>
+  <!-- group選單 -->
+  <script>
+    $.getJSON("/Mgroup_main", function(rawdata){
+      data = rawdata['data']
+      console.log(data[1][0])
+      for (let i = 0; i < data.length; i++) {
+        num = i+1
+        strNum = num.toString();
+        if (i==0) {
+          $('.groupOption').append('<option selected="selected" value = '+strNum+'>'+data[i][0]+'</option>'); 
+        }else{
+          $('.groupOption').append('<option value = '+strNum+'>'+data[i][0]+'</option>'); 
+        }
+      }
+    });
+  </script>
+  <!-- group更新按鈕 -->
+  <script>
+    $.ajaxSetup({
+    data: { csrfmiddlewaretoken: '{{ csrf_token }}' },
+    });
+    $(".clickgroup").click(function(){
+      group = $(".groupOption option:selected").text();
+      $.ajax({
+        url:"/MannounceGroupSession",
+        type:"post",
+        data:{
+          group:group,
+        },
+        success:function(data) {
+          window.location.replace("/backstage"); 
+        },
+      })
+    });
+  </script>
+  {%endblock script%}
